@@ -1,7 +1,7 @@
 <html><p><a href="https://loko-ai.com/" target="_blank" rel="noopener"> <img style="vertical-align: middle;" src="https://user-images.githubusercontent.com/30443495/196493267-c328669c-10af-4670-bbfa-e3029e7fb874.png" width="8%" align="left" /> </a></p>
 <h1>Object Detection</h1><br></html>
 
-The **Object Detection** extension relies on Yolo-v7 to detect objects from images. 
+The **Object Detection** extension relies on YOLO-v7 to detect objects from images. 
 
 The "Object Detection" dashboard allows you to upload images and visualize the detected results:
 <p align="center">
