@@ -1,0 +1,263 @@
+{
+  "name": "object-detection",
+  "id": "object-detection",
+  "description": "",
+  "created_on": "27/02/2023, 15:52:39",
+  "last_modify": "06/03/2023, 15:15:44",
+  "graphs": {
+    "main": {
+      "nodes": [
+        {
+          "id": "477fc7a8-f29c-4276-a300-29763a23b679",
+          "position": {
+            "x": 504,
+            "y": 282
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "File Reader",
+            "events": null,
+            "description": "### Description\nThe FILE READER component allows the reading of individual files.\n\n### Output\nSetting the **Read Content** parameter to **False**, the output provides the file path in PosixPath format. The component will then need to be connected to other components to read the content, for example *LineReader*.\n\nOn the contrary, setting the **Read Content** parameter to **True**, you can choose whether to read the content in *Binary* format. This format will be selected for reading non-text files.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Inputs",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "value",
+                  "type": "files",
+                  "label": "File",
+                  "fragment": "files",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                },
+                {
+                  "name": "read_content",
+                  "type": "boolean",
+                  "label": "Read content"
+                },
+                {
+                  "name": "binary",
+                  "type": "dynamic",
+                  "label": "Binary",
+                  "dynamicType": {
+                    "true": "boolean"
+                  },
+                  "parent": "read_content"
+                }
+              ],
+              "click": "Send file",
+              "icon": "RiFileList3Fill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": false,
+                "read_content": false,
+                "value": {
+                  "name": "cat-dog-care7-720.jpg",
+                  "path": "data/data/yolo/cat-dog-care7-720.jpg",
+                  "parent": "data/data/yolo",
+                  "isDir": false,
+                  "hidden": false
+                }
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "__class__": "Node"
+        },
+        {
+          "id": "fa90a6db-2f30-4538-9ccb-059b2af8d0dd",
+          "position": {
+            "x": 757,
+            "y": 237
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 189,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Object Detector",
+            "events": null,
+            "description": "### Description\nThe **Object Detection** component relies on YOLO-v7 to detect objects from images.\n\n### Configuration\n\n- **keep** parameter sets which objects you want to detect. The available categories are:\n```\n'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light', 'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow', 'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket', 'bottle', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple', 'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch', 'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone', 'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush'.\n``` \n\n  If you leave this argument to \"all\", which is its default value, all the available categories will be detected.\n- **threshold** sets the minimum score to detect an object.\n- **save** allows to save the images with their relative bounding boxes.\n- **file_path** sets the directory where to save the images.\n\n### Input\n\nThe component accepts a single image in input.\n\n### Output\n\nObject Detection returns as output all the detected objects:\n\n```\n{\n    \"label\": \"dog\",\n    \"score\": 0.8783397674560547,\n    \"bbox\":[3,40,422,505]\n}\n```\nIf you've selected the **save** parameter, you'll find the images into the **file_path** folder. \n",
+            "inputs": [
+              {
+                "id": "image",
+                "label": "image",
+                "service": "",
+                "to": "output"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Custom",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "keep",
+                  "type": "text",
+                  "label": "keep",
+                  "helper": "",
+                  "group": "",
+                  "value": "all",
+                  "description": "Objects to be detected. Existing labels are: 'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light', 'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow', 'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket', 'bottle', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple', 'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch', 'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone', 'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush'. Comma separated",
+                  "validation": null
+                },
+                {
+                  "name": "threshold",
+                  "type": "number",
+                  "label": "threshold",
+                  "helper": "",
+                  "group": "",
+                  "value": "0",
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "save",
+                  "type": "boolean",
+                  "label": "save",
+                  "helper": "",
+                  "group": "",
+                  "value": false,
+                  "description": "Save images with bounding boxes",
+                  "validation": null
+                },
+                {
+                  "name": "file_path",
+                  "type": "dynamic",
+                  "label": "file_path",
+                  "helper": "",
+                  "group": "",
+                  "value": null,
+                  "description": "",
+                  "validation": null,
+                  "parent": "save",
+                  "condition": "{parent}",
+                  "dynamicType": "directories",
+                  "options": null,
+                  "fields": null,
+                  "url": null
+                }
+              ],
+              "click": null,
+              "icon": "RiDoorOpenLine",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": true,
+                "keep": "all",
+                "threshold": "0",
+                "save": true,
+                "file_path": {
+                  "name": "data",
+                  "path": "data/data",
+                  "parent": "data",
+                  "isDir": true,
+                  "hidden": false
+                }
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 757,
+            "y": 237
+          },
+          "__class__": "Node"
+        }
+      ],
+      "edges": [
+        {
+          "id": "reactflow__edge-477fc7a8-f29c-4276-a300-29763a23b679output-fa90a6db-2f30-4538-9ccb-059b2af8d0ddimage",
+          "source": "477fc7a8-f29c-4276-a300-29763a23b679",
+          "sourceHandle": "output",
+          "target": "fa90a6db-2f30-4538-9ccb-059b2af8d0dd",
+          "targetHandle": "image",
+          "data": {
+            "startColor": "#F8637A",
+            "stopColor": "#888"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        }
+      ],
+      "__class__": "Graph"
+    }
+  },
+  "open": [
+    "main"
+  ],
+  "active": "main",
+  "version": "1.0.0",
+  "__class__": "Project"
+}

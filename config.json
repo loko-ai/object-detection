@@ -1,0 +1,10 @@
+{
+  "main": {
+    "volumes": [
+       "/var/opt/loko/yolo/:/plugin/resources"
+       ],
+    "gui": {
+      "name": "Object Detection"
+    }
+  }
+}
